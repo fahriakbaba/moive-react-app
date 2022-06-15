@@ -1,24 +1,42 @@
 import React from 'react';
+import MovieCard from './MovieCard';
 
 const API_key = "334af70c";
 function App() {
   const [data, setData] = React.useState([]);
-  React.useEffect(() => {
-    function getMovies(searchMovie) {
-      fetch(`http://www.omdbapi.com/?apikey=${API_key}&s=${searchMovie}`)
-        .then(res => res.json())
-        .then(data =>setData(data));
-    }
+  const [search, setSearch] = React.useState("");
 
+  React.useEffect(() => {
     getMovies("spiderman");
   }, [])
-  console.log(data);
+  async function getMovies(searchMovie) {
+    const res = await fetch(`http://www.omdbapi.com/?apikey=${API_key}&s=${searchMovie}`);
+    const data = await res.json();
+    setData(data.Search)
+  }
+
+  function handleClick() {
+    getMovies(search);
+    setSearch("");
+  }
   return (
     <div className="App">
-     <p>hi this is first movie react project</p>
-     <form>
-      <input type="text" placeholder='Enter your movie name' />
-     </form>
+      <h1>MovieLand</h1>
+      <form>
+        <input
+          type="text"
+          placeholder='Enter your movie name'
+          className='search-input'
+          value={search}
+          onChange={e => setSearch(e.target.value)}
+        />
+        <button type='button' className='search-btn' onClick={handleClick}>search</button>
+      </form>
+      <div className="movie-container">
+        {
+          data.map((movie, index) => (<MovieCard key={index} {...movie} />))
+        }
+      </div>
     </div>
   );
 }
