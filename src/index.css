@@ -22,7 +22,13 @@
   padding: 30px 80px;
 }
 .App h1 {
-  color: var(--white);
+  background: radial-gradient(
+    circle farthest-corner at center center,
+    white,
+    #FFC157
+  ) no-repeat;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
   font-style: italic;
   margin: 2rem auto;
   font-size: 5rem;

@@ -21,7 +21,7 @@ function App() {
     e.preventDefault();
     if(!search) {
       setIsOpen(true);
-      return
+      return;
     }
     getMovies(search);
     setSearch("");
