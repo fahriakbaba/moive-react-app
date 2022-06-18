@@ -1,10 +1,12 @@
 import React from 'react';
+import Modal from './Modal';
 import MovieCard from './MovieCard';
 
 const API_key = "334af70c";
 function App() {
   const [movies, setMovies] = React.useState([]);
   const [search, setSearch] = React.useState("");
+  const [isOpen, setIsOpen] = React.useState(false);
 
   React.useEffect(() => {
     getMovies("batman");
@@ -18,11 +20,15 @@ function App() {
   function handleSubmit(e) {
     e.preventDefault();
     if(!search) {
-      alert("enter your movie name");
+      setIsOpen(true);
       return
     }
     getMovies(search);
     setSearch("");
+  }
+
+  function closeModal() {
+    setIsOpen(false);
   }
   return (
     <div className="App">
@@ -47,7 +53,7 @@ function App() {
         <h2 style={{color:"white"}} >No movies found</h2>
       )
       }
-
+      {isOpen && <Modal closeModal={closeModal} />}
     </div>
   );
 }
