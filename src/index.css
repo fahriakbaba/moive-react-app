@@ -33,6 +33,7 @@
   margin: 2rem auto;
   font-size: 5rem;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  transition: font-size .7s;
 }
 .movie-container {
   display: flex;
@@ -58,7 +59,6 @@
  .movie-title, .movie-type {
   background-color: gray;
   color: var(--white);
-  padding: 6px;
   margin-top:  -5px;
   font-style: italic;
  }
@@ -71,6 +71,7 @@
  .movie-type {
   text-transform: uppercase;
   text-indent: 12px;
+  padding: 12px 6px 0 6px;
  }
 .movie:hover {
   transform: scale(1.1);
@@ -170,4 +171,59 @@ form {
   border: 2px solid var(--warning);
   color: var(--warning);
   background-color: var(--white);
+}
+
+
+@media screen and (max-width:1200px) and (min-width:650px ) {
+  .App h1 {
+    font-size: 3.5rem;
+  }
+  .search-input {
+    width: 250px;
+    font-weight: 600;
+    font-size: .9rem;
+    padding: 4px 12px;
+    border: 2px solid white;
+    border-radius: 4px 0 0 4px;
+  }
+  .search-btn {
+    padding: 4px 8px;
+    border: 2px solid red;
+    border-radius: 0 4px 4px 0;
+    font-weight: 700;
+    font-size: .9rem;
+  }
+}
+@media (max-width:650px) {
+  .App h1 {
+    font-size: 2.5rem;
+  }
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+  .search-input {
+    width: 200px;
+    font-weight: 600;
+    font-size: .7rem;
+    padding: 4px 12px;
+    border: 2px solid white;
+    border-radius: 3px 3px 0 0;
+    text-align: center;
+  }
+  .search-btn {
+    padding: 4px 8px;
+    border: 2px solid red;
+    border-radius: 0 0 3px 3px;
+    font-weight: 700;
+    font-size: .7rem;
+  }
+  .movie {
+    width:200px;
+    height:320px;
+    margin: 2.5rem 1.5rem 0 1.5rem;
+  }
+  .movie-title, .movie-type, .movie-year {
+    font-size: .6rem;
+   }
 }
