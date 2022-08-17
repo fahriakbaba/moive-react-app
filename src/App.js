@@ -7,6 +7,7 @@ function App() {
   const [movies, setMovies] = React.useState([]);
   const [search, setSearch] = React.useState("");
   const [isOpen, setIsOpen] = React.useState(false);
+  const [error, setError] = React.useState("");
 
   React.useEffect(() => {
     getMovies("batman");
@@ -14,7 +15,13 @@ function App() {
   async function getMovies(searchMovie) {
     const res = await fetch(`http://www.omdbapi.com/?apikey=${API_key}&s=${searchMovie}`);
     const data = await res.json();
-    setMovies(data.Search)
+    if (data.Response === "True") {
+      setMovies(data.Search)
+    } else {
+      setIsOpen(true);
+      setError(data.Error)
+    }
+    console.log(data);
   }
 
   function handleSubmit(e) {
@@ -53,7 +60,7 @@ function App() {
         <h2 style={{color:"white"}} >No movies found</h2>
       )
       }
-      {isOpen && <Modal closeModal={closeModal} />}
+      {isOpen && <Modal closeModal={closeModal} error={error} />}
     </div>
   );
 }

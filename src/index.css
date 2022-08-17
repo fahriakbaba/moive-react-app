@@ -27,7 +27,7 @@
     white,
     #FFC157
   ) no-repeat;
-  -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   font-style: italic;
   margin: 2rem auto;
@@ -146,7 +146,7 @@ form {
 }
 .modal-title {
   margin-bottom: 42px;
-  text-transform: uppercase;
+  text-transform: capitalize;
   letter-spacing: .1px;
   word-spacing: 2px;
   font-size: 1.7rem;
